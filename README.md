@@ -32,7 +32,7 @@ It comes with a basic user management, role management and permissions managemen
 # Installation
 
 ```bash
-laravel new my-project --using=mortenebak/tallstarter
+laravel new my-project --using=wpdew-com/laravel-livewire-starter-kit
 ```
 
 You could also just use this repository as a starting point for your own project by clicking use template.
