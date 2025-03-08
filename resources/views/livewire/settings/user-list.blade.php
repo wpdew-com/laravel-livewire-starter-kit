@@ -61,7 +61,7 @@ new class extends Component {
         <div>
             <!-- Кнопка "Добавить пользователя" -->
             <x-button.primary wire:click="$set('showForm', true)">
-                {{ __('users.create') }}
+                {{ __('users.Create') }}
             </x-button.primary>
 
 
@@ -79,9 +79,6 @@ new class extends Component {
             <div x-data="{ open: @entangle('showForm') }">
                 <div x-show="open" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-[100]" style="z-index: 25; background-color: #00000040;">
              <div class="bg-white p-6 rounded shadow-lg w-full max-w-md relative">
-                        <!-- ✅ Ограничение ширины: w-full max-w-md -->
-
-                        <!-- Кнопка закрытия (крестик) -->
                         <button x-on:click="open = false" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-xl">
                             ✖
                         </button>
@@ -89,7 +86,6 @@ new class extends Component {
                         <h2 class="text-lg font-bold mb-4 text-center">{{ __('users.create') }}</h2>
 
                         <form wire:submit.prevent="storeUser">
-                            <!-- Ошибки теперь занимают всю ширину и переносят текст -->
 
                             @if(session('error'))
                             <br><br>
@@ -181,19 +177,15 @@ new class extends Component {
     <div x-data="{ open: @entangle('showConfirm') }">
         <div x-show="open" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-[100] shadow-lg dark:bg-zinc-800 border border-transparent dark:border-zinc-700" style="z-index: 25; background-color: #00000040;">
             <div class="bg-white p-6 rounded shadow-lg w-1/3 relative">
-                <!-- Крестик закрытия -->
                 <button x-on:click="open = false" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-xl">
                     ✖
                 </button>
-
                 <h2 class="text-lg font-bold mb-4 text-center text-red-600">
                     {{ __('users.Are you sure?') }}
                 </h2>
                 <p class="text-center mb-4">
                     {{ __('users.This action cannot be undone!') }}
                 </p>
-
-                <!-- Кнопки -->
                 <div class="flex justify-center gap-4">
 
                     <button wire:click="deleteUser" class="bg-blue-500 text-white px-4 py-2 rounded">
@@ -206,6 +198,74 @@ new class extends Component {
             </div>
         </div>
     </div>
+
+
+
+    <!-- Попап окно -->
+<div x-data="{ open: @entangle('showForm') }">
+    <div x-show="open" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-[100]" style="background-color: #00000040;">
+        <div class="bg-white p-6 rounded shadow-lg w-full max-w-md relative">
+            <button wire:click="$set('showForm', false)" class="absolute top-3 right-3 text-gray-600 hover:text-gray-900 text-xl">
+                ✖
+            </button>
+
+            <h2 class="text-lg font-bold mb-4 text-center">
+                {{ $editMode ? __('users.Edit User') : __('users.Create User') }}
+            </h2>
+
+            <form wire:submit.prevent="storeUser">
+                @if(session('error'))
+                    <x-alert.info>
+                        {{ session('error') }}
+                    </x-alert.info>
+                @endif
+
+                @error('name')
+                    <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
+                @enderror
+                <input type="text" wire:model="name" placeholder="{{ __('users.name') }}" class="border p-2 w-full rounded mb-2">
+
+                @error('email')
+                    <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
+                @enderror
+                <input type="email" wire:model="email" placeholder="{{ __('users.email') }}" class="border p-2 w-full rounded mb-2">
+
+                <!-- Поле смены пароля (только при редактировании) -->
+                @if($editMode)
+                    @error('password')
+                        <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
+                    @enderror
+                    <input type="password" wire:model="password" placeholder="{{ __('users.New Password (optional)') }}" class="border p-2 w-full rounded mb-2">
+                @else
+                    @error('password')
+                        <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
+                    @enderror
+                    <input type="password" wire:model="password" placeholder="{{ __('users.Password') }}" class="border p-2 w-full rounded mb-2">
+                @endif
+
+                @error('role')
+                    <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
+                @enderror
+                <select wire:model="role" class="border p-2 w-full rounded mb-2">
+                    <option value="">{{ __('users.Select a role') }}</option>
+                    @foreach($roles as $role)
+                        <option value="{{ $role->name }}">{{ $role->name }}</option>
+                    @endforeach
+                </select>
+
+                <!-- Кнопки -->
+                <div class="flex justify-end mt-4">
+                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
+                        {{ $editMode ? __('users.Update user') : __('users.Create') }}
+                    </button>
+                    <button type="button" wire:click="$set('showForm', false)" class="bg-red-500 text-white px-4 py-2 rounded ml-2">
+                        {{ __('users.Cancel') }}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
 
     </x-settings.user-list>

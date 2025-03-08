@@ -10,60 +10,82 @@ use Illuminate\Support\Facades\Hash;
 class UserList extends Component
 {
 
-    public $name, $email, $password, $role, $showForm = false;
+    public $userId, $name, $email, $password, $role, $showForm = false;
+    public $editMode = false;
     public $showConfirm = false;
     public $userIdToDelete = null;
 
+
     public function createUser()
     {
-
         $this->resetForm();
-        $this->showForm = true; // ✅ Показываем форму при нажатии кнопки
-
+        $this->editMode = false;
+        $this->showForm = true;
     }
 
-    public function resetForm()
+    public function editUser($userId)
     {
-        $this->name = '';
-        $this->email = '';
-        $this->password = '';
-        $this->role = '';
+        $user = User::findOrFail($userId);
+        $this->userId = $user->id;
+        $this->name = $user->name;
+        $this->email = $user->email;
+        $this->role = $user->role;
+        $this->editMode = true;
+        $this->showForm = true;
     }
-
 
     public function storeUser()
     {
         $validated = $this->validate([
-            'name' => 'required|string|max:255|unique:users,name',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
+            'name' => 'required|string|max:255|unique:users,name,' . $this->userId,
+            'email' => 'required|email|unique:users,email,' . $this->userId,
             'role' => 'required',
         ]);
 
-        try {
-            $user = User::create([
+        if ($this->editMode) {
+            $user = User::find($this->userId);
+            if (!$user) {
+                session()->flash('error', __('users.User not found'));
+                return;
+            }
+
+            $user->update([
                 'name' => $this->name,
                 'email' => $this->email,
-                'password' => Hash::make($this->password),
                 'role' => $this->role,
             ]);
 
-            $user->assignRole($this->role);
+            if (!empty($this->password)) {
+                $user->update(['password' => Hash::make($this->password)]);
+            }
 
-            session()->flash('messageok', __('users.User successfully created'));
-            $this->resetForm();
-            $this->showForm = false; // Закрываем форму после успешного создания
-        } catch (\Exception $e) {
-            session()->flash('error', __('users.Error creating user: ') . $e->getMessage());
+            session()->flash('messageok', __('users.User updated successfully'));
+        } else {
+            $validated['password'] = Hash::make($this->password);
+            User::create($validated);
+            session()->flash('messageok', __('users.User created successfully'));
         }
+
+        $this->resetForm();
+        $this->showForm = false;
+    }
+
+    public function resetForm()
+    {
+        $this->userId = null;
+        $this->name = '';
+        $this->email = '';
+        $this->password = '';
+        $this->role = '';
+        $this->editMode = false;
     }
 
 
     public function confirmDelete($userId)
-{
-    $this->userIdToDelete = $userId; // ✅ Сохраняем ID пользователя для удаления
-    $this->showConfirm = true; // ✅ Открываем модальное окно
-}
+    {
+        $this->userIdToDelete = $userId; // ✅ Сохраняем ID пользователя для удаления
+        $this->showConfirm = true; // ✅ Открываем модальное окно
+    }
 
 
     public function deleteUser()

@@ -20,7 +20,7 @@ return [
     'Password' => 'Password',
     'roles' => 'Roles',
     'your_full_name' => 'Your full name',
-    'create' => 'Create user',
+    'Create' => 'Create user',
     'Cancel' => 'Cancel',
     'User delited' => 'User delited',
     'User not found' => 'User not found',
@@ -34,4 +34,7 @@ return [
     'Error creating user: ' => 'Error creating user: ',
     'This user cannot be deleted' => 'This user cannot be deleted',
     'Select a role' => 'Select a role for the user',
+    'Create User' => 'Create User',
+    'Edit User' => 'Edit User',
+    'Update user' => 'Update user',
 ];
