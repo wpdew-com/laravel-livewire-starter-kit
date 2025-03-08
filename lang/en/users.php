@@ -17,6 +17,7 @@ return [
     'user_deleted' => 'User deleted',
     'name' => 'Name',
     'email' => 'Email',
+    'Password' => 'Password',
     'roles' => 'Roles',
     'your_full_name' => 'Your full name',
     'create' => 'Create user',
@@ -32,4 +33,5 @@ return [
     'User successfully created' => 'User successfully created',
     'Error creating user: ' => 'Error creating user: ',
     'This user cannot be deleted' => 'This user cannot be deleted',
+    'Select a role' => 'Select a role for the user',
 ];

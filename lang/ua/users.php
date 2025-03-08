@@ -17,6 +17,7 @@ return [
     'user_deleted' => 'Користувач видалений',
     'name' => 'Ім\'я',
     'email' => 'Email',
+    'Password' => 'Пароль',
     'roles' => 'Ролі',
     'your_full_name' => 'Ваше повне ім\'я',
     'create' => 'Додати користувача',
@@ -32,4 +33,5 @@ return [
     'User successfully created' => 'Користувач успішно створений',
     'Error creating user: ' => 'Помилка створення користувача: ',
     'This user cannot be deleted' => 'Цього користувача не можна видалити',
+    'Select a role' => 'Виберіть роль для користувача',
 ];

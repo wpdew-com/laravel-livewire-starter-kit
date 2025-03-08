@@ -101,23 +101,23 @@ new class extends Component {
                             @error('name')
                                 <div class="text-red-500 text-sm break-words mb-1">{{ $message }}</div>
                             @enderror
-                            <input type="text" wire:model="name" placeholder="Имя" class="border p-2 w-full rounded mb-2">
+                            <input type="text" wire:model="name" placeholder="{{ __('users.name') }}" class="border p-2 w-full rounded mb-2">
 
                             @error('email')
                                 <div class="text-red-500 text-sm break-words mb-1">{{ $message }}</div>
                             @enderror
-                            <input type="email" wire:model="email" placeholder="Email" class="border p-2 w-full rounded mb-2">
+                            <input type="email" wire:model="email" placeholder="{{ __('users.email') }}" class="border p-2 w-full rounded mb-2">
 
                             @error('password')
                                 <div class="text-red-500 text-sm break-words mb-1">{{ $message }}</div>
                             @enderror
-                            <input type="password" wire:model="password" placeholder="Пароль" class="border p-2 w-full rounded mb-2">
+                            <input type="password" wire:model="password" placeholder="{{ __('users.Password') }}" class="border p-2 w-full rounded mb-2">
 
                             @error('role')
                                 <div class="text-red-500 text-sm break-words mb-1">{{ $message }}</div>
                             @enderror
                             <select wire:model="role" class="border p-2 w-full rounded mb-2">
-                                <option value="">Выберите роль</option>
+                                <option value="">{{ __('users.Select a role') }}</option>
                                 @foreach($roles as $role)
                                     <option value="{{ $role->name }}">{{ $role->name }}</option>
                                 @endforeach

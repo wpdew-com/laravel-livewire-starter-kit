@@ -17,6 +17,7 @@ return [
     'user_deleted' => 'Пользователь удален',
     'name' => 'Имя',
     'email' => 'Email',
+    'Password' => 'Пароль',
     'roles' => 'Роли',
     'your_full_name' => 'Ваше полное имя',
     'create' => 'Создать пользователя',
@@ -32,4 +33,5 @@ return [
     'User successfully created' => 'Пользователь успешно создан',
     'Error creating user: ' => 'Ошибка создания пользователя: ',
     'This user cannot be deleted' => 'Этот пользователь не может быть удален',
+    'Select a role' => 'Выберите роль для пользователя',
 ];

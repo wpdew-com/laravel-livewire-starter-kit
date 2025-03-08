@@ -156,6 +156,7 @@ return [
     */
 
     'attributes' => [
+        'role'                  => 'Роль',
         'name'                  => 'Имя',
         'username'              => 'Никнейм',
         'email'                 => 'E-Mail адрес',
