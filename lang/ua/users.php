@@ -39,4 +39,12 @@ return [
     'Update user' => 'Оновити користувача',
     'User updated successfully' => 'Користувач успішно оновлений',
     'User created successfully' => 'Користувач успішно створений',
+    'Add role' => 'Додати роль',
+    'Edit role' => 'Редагувати роль',
+    'Name role' => 'Ім\'я ролі',
+    'Permissions' => 'Дозволи',
+    'Actions' => 'Дії',
+    'Select permissions:' => 'Виберіть дозволи:',
+    'Refresh role' => 'Оновити роль',
+    'Create role' => 'Створити роль',
 ];

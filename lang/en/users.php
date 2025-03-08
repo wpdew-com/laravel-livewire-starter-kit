@@ -39,4 +39,12 @@ return [
     'Update user' => 'Update user',
     'User updated successfully' => 'User updated successfully',
     'User created successfully' => 'User created successfully',
+    'Add role' => 'Add role',
+    'Edit role' => 'Edit role',
+    'Name role' => 'Name role',
+    'Permissions' => 'Permissions',
+    'Actions' => 'Actions',
+    'Select permissions:' => 'Select permissions:',
+    'Refresh role' => 'Refresh role',
+    'Create role' => 'Create role',
 ];
