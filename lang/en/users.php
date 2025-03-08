@@ -37,4 +37,6 @@ return [
     'Create User' => 'Create User',
     'Edit User' => 'Edit User',
     'Update user' => 'Update user',
+    'User updated successfully' => 'User updated successfully',
+    'User created successfully' => 'User created successfully',
 ];

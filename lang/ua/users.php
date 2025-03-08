@@ -37,4 +37,6 @@ return [
     'Create User' => 'Створити користувача',
     'Edit User' => 'Редагувати користувача',
     'Update user' => 'Оновити користувача',
+    'User updated successfully' => 'Користувач успішно оновлений',
+    'User created successfully' => 'Користувач успішно створений',
 ];

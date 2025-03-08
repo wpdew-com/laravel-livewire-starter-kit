@@ -159,11 +159,15 @@ new class extends Component {
                         <x-table.cell>{{ $user->created_at->diffForHumans() }}</x-table.cell>
                         <x-table.cell>
                             <x-button.primary wire:click="editUser({{ $user->id }})">
-                                {{ __('Edit') }}
+                                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="square" stroke-linejoin="round" stroke-width="2" d="M7 19H5a1 1 0 0 1-1-1v-1a3 3 0 0 1 3-3h1m4-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm7.441 1.559a1.907 1.907 0 0 1 0 2.698l-6.069 6.069L10 19l.674-3.372 6.07-6.07a1.907 1.907 0 0 1 2.697 0Z"/>
+                                  </svg>
                             </x-button.primary>
 
                             <x-button.danger wire:click="confirmDelete({{ $user->id }})" class="ml-2">
-                                {{ __('Delete') }}
+                                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 7h14m-9 3v8m4-8v8M10 3h4a1 1 0 0 1 1 1v3H9V4a1 1 0 0 1 1-1ZM6 7h12v13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V7Z"/>
+                                  </svg>
                             </x-button.danger>
 
                         </x-table.cell>
@@ -256,6 +260,8 @@ new class extends Component {
                 <!-- Кнопки -->
                 <div class="flex justify-end mt-4">
                     <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
+
+
                         {{ $editMode ? __('users.Update user') : __('users.Create') }}
                     </button>
                     <button type="button" wire:click="$set('showForm', false)" class="bg-red-500 text-white px-4 py-2 rounded ml-2">
