@@ -17,6 +17,12 @@ class RoleList extends Component
 
     public function mount()
     {
+        $this->loadData(); // ✅ Используем новый метод
+    }
+
+    // ✅ Новый метод для загрузки данных
+    private function loadData()
+    {
         $this->roles = Role::with('permissions')->get();
         $this->permissions = Permission::all();
     }
@@ -32,7 +38,7 @@ class RoleList extends Component
         $role = Role::findOrFail($roleId);
         $this->roleIdToEdit = $role->id;
         $this->name = $role->name;
-        $this->selectedPermissions = $role->permissions->pluck('id')->toArray();
+        $this->selectedPermissions = $role->permissions->pluck('id')->toArray(); // 🟢 Берем ID разрешений
         $this->showForm = true;
     }
 
@@ -46,12 +52,15 @@ class RoleList extends Component
         $role = $this->roleIdToEdit ? Role::findOrFail($this->roleIdToEdit) : new Role();
         $role->name = $this->name;
         $role->save();
-        $role->syncPermissions($this->selectedPermissions);
+
+        // ✅ Получаем имена разрешений
+        $permissionNames = Permission::whereIn('id', $this->selectedPermissions)->pluck('name')->toArray();
+        $role->syncPermissions($permissionNames);
 
         session()->flash('message', $this->roleIdToEdit ? __('users.Role updated') : __('users.Role created'));
         $this->resetForm();
         $this->showForm = false;
-        $this->mount();
+        $this->loadData(); // ✅ Загружаем данные после изменений
     }
 
     public function confirmDelete($roleId)
@@ -70,7 +79,7 @@ class RoleList extends Component
         if ($this->roleIdToDelete && $this->roleIdToDelete != 1) {
             Role::findOrFail($this->roleIdToDelete)->delete();
             session()->flash('message', __('users.Role deleted'));
-            $this->mount();
+            $this->loadData(); // ✅ Перезагружаем данные
         }
         $this->roleIdToDelete = null;
     }
