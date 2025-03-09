@@ -1,29 +1,9 @@
 <section class="w-full">
     @include('partials.users-heading')
-    <div class="flex items-start max-md:flex-col">
-        <div class="mr-10 w-full pb-4 md:w-[220px]">
-            <flux:navlist>
-                <flux:navlist.item :href="route('settings.user-list')" wire:navigate>{{ __('users.All Users') }}
-                </flux:navlist.item>
-                <flux:navlist.item :href="route('settings.role-list')" wire:navigate>{{ __('Roles') }}
-                </flux:navlist.item>
-                <flux:navlist.item :href="route('settings.appearance')" wire:navigate>{{ __('Permissions') }}
-                </flux:navlist.item>
-            </flux:navlist>
-        </div>
 
-        <flux:separator class="md:hidden" />
+    <x-settings.user-list>
 
-        <div class="flex-1 self-stretch max-md:pt-6">
-
-            <div class="mb-4">
-                {{ $actions ?? '' }} {{-- ✅ Выводит слот "actions" --}}
-            </div>
-            {{-- Close your eyes. Count to one. That is how long forever feels. --}}
-
-
-
-
+        <div>
             <button wire:click="createRole" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">
                 {{ __('users.Add role') }}
             </button>
@@ -34,8 +14,6 @@
                 {{ session('message') }}
             </x-alert.info>
             @endif
-
-
 
             <x-table>
                 <x-slot name="head">
@@ -116,7 +94,13 @@
             </div>
         </div>
 
-    </div>
+
+
+
+
+        </div>
+
+    </x-settings.user-list>
 
 
 </section>
