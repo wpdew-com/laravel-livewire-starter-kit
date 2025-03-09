@@ -12,6 +12,8 @@ class RoleList extends Component
     public $name, $selectedPermissions = [];
     public $showForm = false;
     public $roleIdToEdit = null;
+    public $roleIdToDelete = null;
+    public $deleteError = null;
 
     public function mount()
     {
@@ -52,11 +54,25 @@ class RoleList extends Component
         $this->mount();
     }
 
-    public function deleteRole($roleId)
+    public function confirmDelete($roleId)
     {
-        Role::findOrFail($roleId)->delete();
-        session()->flash('message', __('users.Role deleted'));
-        $this->mount();
+        if ($roleId == 1) {
+            $this->deleteError = __('users.Cannot delete this role');
+            session()->flash('message', $this->deleteError);
+        } else {
+            $this->roleIdToDelete = $roleId;
+            $this->deleteError = null;
+        }
+    }
+
+    public function deleteRole()
+    {
+        if ($this->roleIdToDelete && $this->roleIdToDelete != 1) {
+            Role::findOrFail($this->roleIdToDelete)->delete();
+            session()->flash('message', __('users.Role deleted'));
+            $this->mount();
+        }
+        $this->roleIdToDelete = null;
     }
 
     private function resetForm()
@@ -64,6 +80,7 @@ class RoleList extends Component
         $this->roleIdToEdit = null;
         $this->name = '';
         $this->selectedPermissions = [];
+        $this->deleteError = null;
     }
 
     public function render()

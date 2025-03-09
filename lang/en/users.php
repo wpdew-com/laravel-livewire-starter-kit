@@ -50,4 +50,7 @@ return [
     'Role updated' => 'Role updated',
     'Role created' => 'Role created',
     'Role deleted' => 'Role deleted',
+    'Cannot delete this role' => 'Cannot delete this role',
+    'Are you sure?' => 'Are you sure?',
+    'Deleting a role will result in the loss of all permissions associated with it. Are you sure you want to delete this role?' => 'Deleting a role will result in the loss of all permissions associated with it. Are you sure you want to delete this role?',
 ];

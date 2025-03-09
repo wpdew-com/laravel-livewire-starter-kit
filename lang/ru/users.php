@@ -50,4 +50,7 @@ return [
     'Role updated' => 'Роль обновлена',
     'Role created' => 'Роль создана',
     'Role deleted' => 'Роль удалена',
+    'Cannot delete this role' => 'Нельзя удалить эту роль',
+    'Are you sure?' => 'Вы уверены?',
+    'Deleting a role will result in the loss of all permissions associated with it. Are you sure you want to delete this role?' => 'Удаление роли приведет к потере всех связанных с ней разрешений. Вы уверены, что хотите удалить эту роль?',
 ];
