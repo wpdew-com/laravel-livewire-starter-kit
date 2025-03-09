@@ -1,29 +1,21 @@
 <?php
 
-namespace App\Http\Livewire\Settings;
+namespace App\Livewire\Settings; // 👈 Исправленный namespace
 
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
 
 class Permissions extends Component
 {
-    public $name;
-    public $permissionId;
-    public $showForm = false;
-    public $permissions = [];
+    public string $name = '';
+    public ?int $permissionId = null;
+    public bool $showForm = false;
 
-    protected $rules = [
-        'name' => 'required|string|unique:permissions,name',
-    ];
-
-    public function mount()
+    #[Computed]
+    public function permissions()
     {
-        $this->loadPermissions();
-    }
-
-    public function loadPermissions()
-    {
-        $this->permissions = Permission::all();
+        return Permission::all();
     }
 
     public function createPermission()
@@ -34,15 +26,14 @@ class Permissions extends Component
 
     public function storePermission()
     {
-        $this->validate();
+        $this->validate(['name' => 'required|string|unique:permissions,name']);
         Permission::create(['name' => $this->name]);
 
         session()->flash('message', 'Разрешение создано.');
-        $this->loadPermissions();
         $this->showForm = false;
     }
 
-    public function editPermission($id)
+    public function editPermission(int $id)
     {
         $permission = Permission::findOrFail($id);
         $this->permissionId = $permission->id;
@@ -52,28 +43,16 @@ class Permissions extends Component
 
     public function updatePermission()
     {
-        $this->validate([
-            'name' => 'required|string|unique:permissions,name,' . $this->permissionId,
-        ]);
-
+        $this->validate(['name' => 'required|string|unique:permissions,name,' . $this->permissionId]);
         Permission::where('id', $this->permissionId)->update(['name' => $this->name]);
 
         session()->flash('message', 'Разрешение обновлено.');
-        $this->loadPermissions();
         $this->showForm = false;
     }
 
-    public function deletePermission($id)
+    public function deletePermission(int $id)
     {
         Permission::findOrFail($id)->delete();
         session()->flash('message', 'Разрешение удалено.');
-        $this->loadPermissions();
-    }
-
-    public function render()
-    {
-        return view('livewire.settings.permissions', [
-            'permissions' => $this->permissions, // Передаем в Blade-шаблон
-        ]);
     }
 }

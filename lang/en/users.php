@@ -53,4 +53,9 @@ return [
     'Cannot delete this role' => 'Cannot delete this role',
     'Are you sure?' => 'Are you sure?',
     'Deleting a role will result in the loss of all permissions associated with it. Are you sure you want to delete this role?' => 'Deleting a role will result in the loss of all permissions associated with it. Are you sure you want to delete this role?',
+    'Add permission' => 'Add permission',
+    'Edit permission' => 'Edit permission',
+    'Name permission' => 'Name permission',
+    'Refresh permission' => 'Refresh permission',
+    'Create permission' => 'Create permission',
 ];

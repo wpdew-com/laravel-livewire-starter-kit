@@ -53,4 +53,9 @@ return [
     'Cannot delete this role' => 'Нельзя удалить эту роль',
     'Are you sure?' => 'Вы уверены?',
     'Deleting a role will result in the loss of all permissions associated with it. Are you sure you want to delete this role?' => 'Удаление роли приведет к потере всех связанных с ней разрешений. Вы уверены, что хотите удалить эту роль?',
+    'Add permission' => 'Добавить разрешение',
+    'Edit permission' => 'Редактировать разрешение',
+    'Name permission' => 'Имя разрешения',
+    'Refresh permission' => 'Обновить разрешение',
+    'Create permission' => 'Создать разрешение',
 ];

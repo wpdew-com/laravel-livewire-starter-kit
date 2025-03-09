@@ -53,4 +53,9 @@ return [
     'Cannot delete this role' => 'Цю роль не можна видалити',
     'Are you sure?' => 'Ви впевнені?',
     'Deleting a role will result in the loss of all permissions associated with it. Are you sure you want to delete this role?' => 'Видалення ролі призведе до втрати всіх пов\'язаних з нею дозволів. Ви впевнені, що хочете видалити цю роль?',
+    'Add permission' => 'Додати дозвіл',
+    'Edit permission' => 'Редагувати дозвіл',
+    'Name permission' => 'Ім\'я дозволу',
+    'Refresh permission' => 'Оновити дозвіл',
+    'Create permission' => 'Створити дозвіл',
 ];
