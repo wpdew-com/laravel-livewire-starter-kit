@@ -46,7 +46,7 @@ class RoleList extends Component
         $role->save();
         $role->syncPermissions($this->selectedPermissions);
 
-        session()->flash('message', $this->roleIdToEdit ? 'Роль обновлена' : 'Роль создана');
+        session()->flash('message', $this->roleIdToEdit ? __('users.Role updated') : __('users.Role created'));
         $this->resetForm();
         $this->showForm = false;
         $this->mount();
@@ -55,7 +55,7 @@ class RoleList extends Component
     public function deleteRole($roleId)
     {
         Role::findOrFail($roleId)->delete();
-        session()->flash('message', 'Роль удалена');
+        session()->flash('message', __('users.Role deleted'));
         $this->mount();
     }
 

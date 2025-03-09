@@ -55,16 +55,10 @@ new class extends Component {
 
     <x-settings.user-list>
 
-
-
-
         <div>
-            <!-- Кнопка "Добавить пользователя" -->
             <x-button.primary wire:click="$set('showForm', true)">
                 {{ __('users.Create') }}
             </x-button.primary>
-
-
 
 
             @if(session('messageok'))
@@ -74,8 +68,6 @@ new class extends Component {
             </x-alert.info>
             @endif
 
-
-            <!-- Попап окно -->
             <div x-data="{ open: @entangle('showForm') }">
                 <div x-show="open" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-[100]" style="z-index: 25; background-color: #00000040;">
              <div class="bg-white p-6 rounded shadow-lg w-full max-w-md relative">
@@ -119,7 +111,6 @@ new class extends Component {
                                 @endforeach
                             </select>
 
-                            <!-- Кнопки -->
                             <div class="flex justify-end mt-4">
                                 <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">
                                     {{ __('users.create') }}
@@ -133,14 +124,13 @@ new class extends Component {
                 </div>
             </div>
 
-        <!-- User List table -->
-
         <x-table>
             <x-slot name="head">
                 <x-table.heading>{{ __('users.name') }}</x-table.heading>
                 <x-table.heading>{{ __('users.email') }}</x-table.heading>
                 <x-table.heading>{{ __('users.roles') }}</x-table.heading>
                 <x-table.heading></x-table.heading>
+                <x-table.heading>{{ __('users.Actions') }}</x-table.heading>
             </x-slot>
 
 

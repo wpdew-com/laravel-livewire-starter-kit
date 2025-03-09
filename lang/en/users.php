@@ -47,4 +47,7 @@ return [
     'Select permissions:' => 'Select permissions:',
     'Refresh role' => 'Refresh role',
     'Create role' => 'Create role',
+    'Role updated' => 'Role updated',
+    'Role created' => 'Role created',
+    'Role deleted' => 'Role deleted',
 ];

@@ -47,4 +47,7 @@ return [
     'Select permissions:' => 'Виберіть дозволи:',
     'Refresh role' => 'Оновити роль',
     'Create role' => 'Створити роль',
+    'Role updated' => 'Роль оновлена',
+    'Role created' => 'Роль створена',
+    'Role deleted' => 'Роль видалена',
 ];
