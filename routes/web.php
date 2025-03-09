@@ -6,6 +6,7 @@ use Livewire\Volt\Volt;
 use Livewire\Livewire;
 use App\Http\Livewire\Settings\UserList;
 use App\Livewire\Settings\RoleList;
+use App\Http\Livewire\Settings\Permissions;
 
 
 Route::get('/', function () {
@@ -24,6 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
     Volt::route('settings/user-list', 'settings.user-list')->name('settings.user-list');
     Volt::route('settings/roles', 'settings.role-list')->name('settings.role-list');
+    Volt::route('settings/permissions', 'settings.permissions')->name('settings.permissions');
 
 });
 

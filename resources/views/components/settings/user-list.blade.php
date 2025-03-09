@@ -3,7 +3,7 @@
         <flux:navlist>
             <flux:navlist.item :href="route('settings.user-list')" wire:navigate>{{ __('users.All Users') }}</flux:navlist.item>
             <flux:navlist.item :href="route('settings.role-list')" wire:navigate>{{ __('Roles') }}</flux:navlist.item>
-            <flux:navlist.item :href="route('settings.appearance')" wire:navigate>{{ __('Permissions') }}</flux:navlist.item>
+            <flux:navlist.item :href="route('settings.permissions')" wire:navigate>{{ __('Permissions') }}</flux:navlist.item>
         </flux:navlist>
     </div>
 
