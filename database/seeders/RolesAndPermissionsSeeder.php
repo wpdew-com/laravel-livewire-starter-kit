@@ -15,9 +15,27 @@ class RolesAndPermissionsSeeder extends Seeder
         $userRole = Role::firstOrCreate(['name' => 'user']);
 
         // Создаём разрешения
-        $manageUsers = Permission::firstOrCreate(['name' => 'manage users']);
+        $permissions = [
+            'manage users',
+            'view users',
+            'create users',
+            'update users',
+            'delete users',
+            'view roles',
+            'create roles',
+            'update roles',
+            'delete roles',
+            'view permissions',
+            'create permissions',
+            'update permissions',
+            'delete permissions',
+        ];
+
+        foreach ($permissions as $permission) {
+            Permission::firstOrCreate(['name' => $permission]);
+        }
 
         // Назначаем разрешения ролям
-        $adminRole->givePermissionTo($manageUsers);
+        $adminRole->syncPermissions($permissions);
     }
 }

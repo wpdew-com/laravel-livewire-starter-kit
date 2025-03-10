@@ -3,11 +3,13 @@
 
     <x-settings.user-list>
         <div>
+            @can('create permissions')
             <button wire:click="createPermission" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">
                 {{ __('users.Add permission') }}
             </button>
+            @endcan
 
-            <!-- Модальное окно -->
+
             <div x-data="{ open: @entangle('showForm') }">
                 <div x-show="open"
                     class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-[100] shadow-lg dark:bg-zinc-800 border border-transparent dark:border-zinc-700"
@@ -45,9 +47,6 @@
                 </div>
             </div>
 
-
-
-
             @if(session('message'))
                 <x-alert.info>
                     {{ session('message') }}
@@ -66,14 +65,18 @@
                     <tr class="border">
                         <td class="border p-2">{{ $permission->name }}</td>
                         <td class="border p-2 flex space-x-2">
+                            @can('update permissions')
                             <button wire:click="editPermission({{ $permission->id }})"
                                     class="bg-yellow-500 text-white px-2 py-1 rounded">
-                                ✏️ Редактировать
+                                ✏️ {{ __('users.Edit permission') }}
                             </button>
+                            @endcan
+                            @can('delete permissions')
                             <button wire:click="deletePermission({{ $permission->id }})"
                                     class="bg-red-500 text-white px-2 py-1 rounded">
-                                🗑 Удалить
+                                🗑 {{ __('users.Delite permission') }}
                             </button>
+                            @endcan
                         </td>
                     </tr>
                 @endforeach

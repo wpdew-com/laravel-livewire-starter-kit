@@ -17,10 +17,9 @@ class RoleList extends Component
 
     public function mount()
     {
-        $this->loadData(); // ✅ Используем новый метод
+        $this->loadData();
     }
 
-    // ✅ Новый метод для загрузки данных
     private function loadData()
     {
         $this->roles = Role::with('permissions')->get();
@@ -53,14 +52,13 @@ class RoleList extends Component
         $role->name = $this->name;
         $role->save();
 
-        // ✅ Получаем имена разрешений
         $permissionNames = Permission::whereIn('id', $this->selectedPermissions)->pluck('name')->toArray();
         $role->syncPermissions($permissionNames);
 
         session()->flash('message', $this->roleIdToEdit ? __('users.Role updated') : __('users.Role created'));
         $this->resetForm();
         $this->showForm = false;
-        $this->loadData(); // ✅ Загружаем данные после изменений
+        $this->loadData();
     }
 
     public function confirmDelete($roleId)
@@ -79,7 +77,7 @@ class RoleList extends Component
         if ($this->roleIdToDelete && $this->roleIdToDelete != 1) {
             Role::findOrFail($this->roleIdToDelete)->delete();
             session()->flash('message', __('users.Role deleted'));
-            $this->loadData(); // ✅ Перезагружаем данные
+            $this->loadData();
         }
         $this->roleIdToDelete = null;
     }

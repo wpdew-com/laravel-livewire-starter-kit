@@ -59,4 +59,8 @@ return [
     'Name permission' => 'Name permission',
     'Refresh permission' => 'Refresh permission',
     'Create permission' => 'Create permission',
+    'Delite permission' => 'Delite permission',
+    'Permission created.' => 'Permission created.',
+    'Permission updated.' => 'Permission updated.',
+    'Permission deleted.' => 'Permission deleted.',
 ];

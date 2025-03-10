@@ -59,4 +59,8 @@ return [
     'Name permission' => 'Имя разрешения',
     'Refresh permission' => 'Обновить разрешение',
     'Create permission' => 'Создать разрешение',
+    'Delite permission' => 'Удалить разрешение',
+    'Permission created.' => 'Разрешение создано.',
+    'Permission updated.' => 'Разрешение обновлено.',
+    'Permission deleted.' => 'Разрешение удалено.',
 ];

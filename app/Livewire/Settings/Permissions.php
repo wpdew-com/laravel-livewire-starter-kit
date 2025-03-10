@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Settings; // 👈 Исправленный namespace
+namespace App\Livewire\Settings;
 
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -29,7 +29,7 @@ class Permissions extends Component
         $this->validate(['name' => 'required|string|unique:permissions,name']);
         Permission::create(['name' => $this->name]);
 
-        session()->flash('message', 'Разрешение создано.');
+        session()->flash('message', __('users.Permission created.'));
         $this->showForm = false;
     }
 
@@ -46,13 +46,13 @@ class Permissions extends Component
         $this->validate(['name' => 'required|string|unique:permissions,name,' . $this->permissionId]);
         Permission::where('id', $this->permissionId)->update(['name' => $this->name]);
 
-        session()->flash('message', 'Разрешение обновлено.');
+        session()->flash('message', __('users.Permission updated.'));
         $this->showForm = false;
     }
 
     public function deletePermission(int $id)
     {
         Permission::findOrFail($id)->delete();
-        session()->flash('message', 'Разрешение удалено.');
+        session()->flash('message', __('users.Permission deleted.'));
     }
 }

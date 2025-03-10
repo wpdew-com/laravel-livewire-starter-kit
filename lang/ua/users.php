@@ -59,4 +59,8 @@ return [
     'Name permission' => 'Ім\'я дозволу',
     'Refresh permission' => 'Оновити дозвіл',
     'Create permission' => 'Створити дозвіл',
+    'Delite permission' => 'Видалити дозвіл',
+    'Permission created.' => 'Дозвіл створено.',
+    'Permission updated.' => 'Дозвіл оновлено.',
+    'Permission deleted.' => 'Дозвіл видалено.',
 ];

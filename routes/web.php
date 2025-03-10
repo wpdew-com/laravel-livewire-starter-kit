@@ -25,21 +25,9 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
     Volt::route('settings/user-list', 'settings.user-list')->name('settings.user-list');
     Volt::route('settings/roles', 'settings.role-list')->name('settings.role-list');
-    //Volt::route('settings/permissions', 'settings.permissions')->name('settings.permissions');
     Volt::route('settings/permissions', Permissions::class)->name('settings.permissions');
-
-
-});
-
-Route::middleware(['auth'])->group(function () {
-
-    Route::get('settings/locale', \App\Livewire\Settings\Locale::class)->name('settings.locale');
-    //Route::get('settings/user-list', 'settings.user-list')->name('settings.user-list');
-    //Route::get('/settings/users', UserManagement::class)->name('settings.users');
+    Volt::route('settings/locale', 'settings.locale')->name('settings.locale');
 
 });
-
-
-
 
 require __DIR__.'/auth.php';

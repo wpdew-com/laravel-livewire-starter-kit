@@ -7,16 +7,3 @@
       {{ $slot }}
     </div>
 </div>
-
-
-<!--
-<div class="mt-2 mb-2 bg-cyan-500 text-white border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
-	<p class="font-bold">{{ $slot }}
-	<button id="alert" style="text-align: right; float: right;cursor: pointer;" class="items-center justify-center transition-all w-8 h-8 rounded-md text-white hover:bg-white/10 active:bg-white/10" type="button">
-		<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5" stroke-width="2">
-		  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-		</svg>
-	</button>
-</p>
-</div>
--->

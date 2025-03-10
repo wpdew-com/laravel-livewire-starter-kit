@@ -92,8 +92,8 @@ class UserList extends Component
 
     public function confirmDelete($userId)
     {
-        $this->userIdToDelete = $userId; // ✅ Сохраняем ID пользователя для удаления
-        $this->showConfirm = true; // ✅ Открываем модальное окно
+        $this->userIdToDelete = $userId;
+        $this->showConfirm = true;
     }
 
 
@@ -104,7 +104,6 @@ class UserList extends Component
             return;
         }
 
-        // Запрещаем удаление пользователя с ID 1
         if ($this->userIdToDelete == 1) {
             session()->flash('error', __('users.This user cannot be deleted'));
             return;
@@ -128,10 +127,6 @@ class UserList extends Component
     public function render()
     {
         $users = User::all();
-        //dd($users[0]['name']);
-        // массив пользователей
-        //return view('livewire.settings.user-list', compact('users'));
-
         return view('livewire.settings.user-list', [
             'users' => User::with('roles')->get(),
             'roles' => Role::all(),
