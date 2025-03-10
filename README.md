@@ -32,47 +32,34 @@ It comes with a basic user management, role management and permissions managemen
 # Installation
 
 ```bash
-laravel new my-project --using=wpdew-com/laravel-livewire-starter-kit
-```
-
-You could also just use this repository as a starting point for your own project by clicking use template.
-
-## 1. Install dependencies
-
-```bash
+git clone https://github.com/wpdew-com/laravel-livewire-starter-kit .
 composer install
-npm install
-npm run build # or npm run dev
-```
-
-## 2. Configure environment
-
-Setup your `.env` file and run the migrations.
-
-```bash
 cp .env.example .env
 php artisan key:generate
 php artisan storage:link
 ```
 
-## 3. Migration
+You could also just use this repository as a starting point for your own project by clicking use template.
+
+## 1. Install dependencies Migration end Seeding
 
 ```bash
+npm install
+npm run build
+
 php artisan migrate
-```
-
-## 4. Seeding
-
-```bash
 php artisan db:seed
+php artisan db:seed --class=RolesAndPermissionsSeeder
 ```
-## 5. Creating the first Super Admin user
+
+
+## 2. Creating the first Super Admin user
 
 ```bash
 php artisan app:create-super-admin
 ```
 
-## 6. Set default timezone if different from UTC
+## 3. Set default timezone if different from UTC
 
 ```php
 // config/app.php
@@ -83,6 +70,12 @@ return [
     
     // ...
 ];
+```
+
+## 3. Start the development server
+
+```bash
+php artisan serve
 ```
 
 # Developing
