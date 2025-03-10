@@ -16,7 +16,6 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Создаём разрешения
         $permissions = [
-            'manage users',
             'view users',
             'create users',
             'update users',
