@@ -37,6 +37,7 @@ return [
     'Create User' => 'Создать пользователя',
     'Edit User' => 'Редактировать пользователя',
     'Update user' => 'Обновить пользователя',
+    'Select a locale' => 'Выберите язык',
     'User updated successfully' => 'Пользователь успешно обновлен',
     'User created successfully' => 'Пользователь успешно создан',
     'Add role' => 'Добавить роль',

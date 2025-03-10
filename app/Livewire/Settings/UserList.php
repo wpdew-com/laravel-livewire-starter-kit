@@ -14,6 +14,8 @@ class UserList extends Component
     public $editMode = false;
     public $showConfirm = false;
     public $userIdToDelete = null;
+    public $locale;
+    public $locales = ['en', 'ru',  'ua'];
 
 
     public function createUser()
@@ -30,6 +32,7 @@ class UserList extends Component
         $this->name = $user->name;
         $this->email = $user->email;
         $this->role = $user->role;
+        $this->locale = $user->locale;
         $this->editMode = true;
         $this->showForm = true;
     }
@@ -39,6 +42,7 @@ class UserList extends Component
         $validated = $this->validate([
             'name' => 'required|string|max:255|unique:users,name,' . $this->userId,
             'email' => 'required|email|unique:users,email,' . $this->userId,
+            'locale' => 'required',
             'role' => 'required',
         ]);
 
@@ -53,6 +57,7 @@ class UserList extends Component
                 'name' => $this->name,
                 'email' => $this->email,
                 'role' => $this->role,
+                'locale' => $this->locale,
             ]);
 
             if (!empty($this->password)) {
@@ -62,6 +67,9 @@ class UserList extends Component
             session()->flash('messageok', __('users.User updated successfully'));
         } else {
             $validated['password'] = Hash::make($this->password);
+            foreach ($this->locales as $locale) {
+                User::create(array_merge($validated, ['locale' => $locale]));
+            }
             User::create($validated);
             session()->flash('messageok', __('users.User created successfully'));
         }
@@ -76,6 +84,7 @@ class UserList extends Component
         $this->name = '';
         $this->email = '';
         $this->password = '';
+        $this->locale = '';
         $this->role = '';
         $this->editMode = false;
     }
@@ -126,6 +135,7 @@ class UserList extends Component
         return view('livewire.settings.user-list', [
             'users' => User::with('roles')->get(),
             'roles' => Role::all(),
+            'locales' => $this->locales
         ]);
 
     }

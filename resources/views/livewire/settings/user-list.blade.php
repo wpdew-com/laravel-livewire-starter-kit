@@ -11,6 +11,7 @@ new class extends Component {
     public string $email = '';
     // publi call users
     public $users;
+    public string $locale = '';
 
     /**
      * Mount the component.
@@ -95,6 +96,16 @@ new class extends Component {
                                 <div class="text-red-500 text-sm break-words mb-1">{{ $message }}</div>
                             @enderror
                             <input type="email" wire:model="email" placeholder="{{ __('users.email') }}" class="border p-2 w-full rounded mb-2">
+
+                            @error('locale')
+                                <div class="text-red-500 text-sm break-words mb-1">{{ $message }}</div>
+                            @enderror
+                            <select wire:model="locale" class="border p-2 w-full rounded mb-2">
+                                <option value="">{{ __('users.Select a locale') }}</option>
+                                @foreach($locales as $locale)
+                                    <option value="{{ $locale }}">{{ $locale }}</option>
+                                @endforeach
+                            </select>
 
                             @error('password')
                                 <div class="text-red-500 text-sm break-words mb-1">{{ $message }}</div>
@@ -223,6 +234,16 @@ new class extends Component {
                     <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
                 @enderror
                 <input type="email" wire:model="email" placeholder="{{ __('users.email') }}" class="border p-2 w-full rounded mb-2">
+
+                @error('locale')
+                                <div class="text-red-500 text-sm break-words mb-1">{{ $message }}</div>
+                            @enderror
+                            <select wire:model="locale" class="border p-2 w-full rounded mb-2">
+                                <option value="">{{ __('users.Select a locale') }}</option>
+                                @foreach($locales as $locale)
+                                    <option value="{{ $locale }}">{{ $locale }}</option>
+                                @endforeach
+                            </select>
 
                 <!-- Поле смены пароля (только при редактировании) -->
                 @if($editMode)

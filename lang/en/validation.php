@@ -178,5 +178,6 @@ return [
         'time'                  => 'Time',
         'available'             => 'Available',
         'size'                  => 'Size',
+        'locale'                => 'Language',
     ],
 ];

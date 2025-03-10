@@ -37,6 +37,7 @@ return [
     'Create User' => 'Create User',
     'Edit User' => 'Edit User',
     'Update user' => 'Update user',
+    'Select a locale' => 'Select a locale',
     'User updated successfully' => 'User updated successfully',
     'User created successfully' => 'User created successfully',
     'Add role' => 'Add role',

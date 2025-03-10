@@ -29,11 +29,13 @@
                 </flux:navlist.group>
             </flux:navlist>
 
+            @can('view users')
             <flux:navlist variant="outline">
                 <flux:navlist.group heading="{{__('Settings')}}" class="grid">
                     <flux:navlist.item icon="users" :href="route('settings.user-list')" :current="request()->routeIs('settings.user-list')" wire:navigate>{{ __('Users') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
+            @endcan
 
 
 
