@@ -82,4 +82,6 @@ php artisan serve
 
 
 # Donate
-If you like this project, please consider donating to support it.
+If you like this project, please consider donating to support it. Thank you!
+
+[![Donate](https://img.shields.io/badge/Donate-MonoBank-green.svg)](/Users/aleks/Downloads/TEMP/livewire/liveware)
