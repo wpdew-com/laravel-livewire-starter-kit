@@ -50,6 +50,7 @@ npm run build
 php artisan migrate
 php artisan db:seed
 php artisan db:seed --class=RolesAndPermissionsSeeder
+php artisan db:seed --class=PageSeeder
 ```
 
 

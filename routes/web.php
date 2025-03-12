@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Livewire\Settings\UserManagement;
+use App\Livewire\Settings\UserManagement;
 use App\Livewire\Settings\Permissions;
+use App\Livewire\Pages\PageComponent;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use Livewire\Livewire;
@@ -27,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/roles', 'settings.role-list')->name('settings.role-list');
     Volt::route('settings/permissions', Permissions::class)->name('settings.permissions');
     Volt::route('settings/locale', 'settings.locale')->name('settings.locale');
+    Volt::route('pages', PageComponent::class)->name('pages');
 
 });
 

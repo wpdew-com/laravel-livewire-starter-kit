@@ -16,6 +16,22 @@ class RolesAndPermissionsSeeder extends Seeder
 
         // Создаём разрешения
         $permissions = [
+            'view tag',
+            'create tag',
+            'update tag',
+            'delete tag',
+            'view category',
+            'create category',
+            'update category',
+            'delete category',
+            'view post',
+            'create post',
+            'update post',
+            'delete post',
+            'view page',
+            'create page',
+            'update page',
+            'delete page',
             'view users',
             'create users',
             'update users',

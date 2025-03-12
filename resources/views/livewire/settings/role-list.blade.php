@@ -76,7 +76,7 @@
                                 class="border p-2 w-full rounded mb-2">
 
                             <h3 class="text-sm font-bold mb-2">{{ __('users.Select permissions:') }}</h3>
-                            <div class="grid grid-cols-2 gap-x-4 gap-y-2 max-h-48 overflow-y-auto">
+                            <div class="grid grid-cols-2 gap-x-4 gap-y-2 max-h-48 overflow-y-auto h-32">
                                 @foreach ($permissions as $permission)
                                     <label class="flex items-center space-x-2">
                                         <input type="checkbox" wire:model="selectedPermissions"
