@@ -28,6 +28,7 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/roles', 'settings.role-list')->name('settings.role-list');
     Volt::route('settings/permissions', Permissions::class)->name('settings.permissions');
     Volt::route('settings/locale', 'settings.locale')->name('settings.locale');
+    Volt::route('dashboard/pages', PageComponent::class)->name('dashboard.pages');
     Volt::route('pages', PageComponent::class)->name('pages');
 
 });

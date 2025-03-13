@@ -5,6 +5,7 @@ namespace App\Livewire\Settings;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Spatie\Permission\Models\Permission;
+use Livewire\WithPagination;
 
 class Permissions extends Component
 {
@@ -15,7 +16,7 @@ class Permissions extends Component
     #[Computed]
     public function permissions()
     {
-        return Permission::all();
+        return Permission::paginate(10);
     }
 
     public function createPermission()

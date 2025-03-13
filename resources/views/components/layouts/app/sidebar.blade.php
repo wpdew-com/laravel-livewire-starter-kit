@@ -19,7 +19,7 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group heading="{{__('Settings')}}" class="grid">
-                    <flux:navlist.item icon="document" :href="route('pages')" :current="request()->routeIs('pages')" wire:navigate>{{ __('Pages') }}</flux:navlist.item>
+                    <flux:navlist.item icon="document" :href="route('dashboard.pages')" :current="request()->routeIs('pages')" wire:navigate>{{ __('Pages') }}</flux:navlist.item>
 
                     <flux:navlist.item icon="document" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Posts') }}</flux:navlist.item>
 

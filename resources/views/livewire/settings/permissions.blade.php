@@ -82,6 +82,8 @@
                 @endforeach
                 </tbody>
             </table>
+            <br>
+            {{ $this->permissions()->links() }}
 
         </div>
     </x-settings.user-list>

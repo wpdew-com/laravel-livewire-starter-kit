@@ -10,8 +10,10 @@ class PageComponent extends Component
 {
     use WithPagination;
 
-    public $title, $content, $pageId;
+    public $title, $content, $pageId, $showForm = false;
     public $isEditMode = false;
+    public $pageIdToEdit = null;
+    public $pageIdToDelete = null;
 
     protected $rules = [
         'title' => 'required|string|max:255',
@@ -21,7 +23,7 @@ class PageComponent extends Component
     public function render()
     {
         return view('livewire.pages.page-component', [
-            'pages' => Page::paginate(10) // Передаём переменную в шаблон
+            'pages' => Page::paginate(10)
         ]);
     }
 
@@ -29,16 +31,45 @@ class PageComponent extends Component
     {
         $this->resetForm();
         $this->isEditMode = true;
+        $this->showForm = true;
     }
+
+    public function storePage()
+    {
+        $this->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string'
+        ]);
+
+        $page = $this->isEditMode ? Page::findOrFail($this->pageId) : new Page();
+        $page->title = $this->title;
+        $page->content = $this->content;
+        $page->save();
+
+        session()->flash('message', $this->isEditMode ? __('pages.The page has been updated.') : __('pages.The page was created successfully.'));
+
+        $this->resetForm();
+        $this->showForm = false;
+
+        if (!$this->isEditMode) {
+            $this->resetPage(); // Обновляет пагинацию, чтобы увидеть новую страницу
+        }
+    }
+
+
 
     public function store()
     {
         $this->validate();
+
         Page::create([
             'title' => $this->title,
             'content' => $this->content,
         ]);
-        session()->flash('message', 'Страница создана успешно.');
+
+        session()->flash('message', __('pages.The page was created successfully.'));
+
+        $this->resetPage(); // Обновляет пагинацию, чтобы увидеть новую страницу
         $this->resetForm();
     }
 
@@ -49,6 +80,7 @@ class PageComponent extends Component
         $this->title = $page->title;
         $this->content = $page->content;
         $this->isEditMode = true;
+        $this->showForm = true;
     }
 
     public function update()
@@ -58,14 +90,23 @@ class PageComponent extends Component
             'title' => $this->title,
             'content' => $this->content,
         ]);
-        session()->flash('message', 'Страница обновлена.');
+        session()->flash('message', __('pages.The page has been updated.'));
+        $this->showForm = false;
         $this->resetForm();
     }
 
-    public function delete($id)
+    public function confirmDelete($id)
     {
-        Page::findOrFail($id)->delete();
-        session()->flash('message', 'Страница удалена.');
+        $this->pageIdToDelete = $id;
+    }
+
+    public function deletePage()
+    {
+        if ($this->pageIdToDelete) {
+            Page::findOrFail($this->pageIdToDelete)->delete();
+            session()->flash('message', __('pages.Page removed.'));
+            $this->pageIdToDelete = null;
+        }
     }
 
     public function resetForm()
@@ -74,5 +115,7 @@ class PageComponent extends Component
         $this->content = '';
         $this->pageId = null;
         $this->isEditMode = false;
+        $this->showForm = false; // Закрываем форму после добавления
     }
+
 }
