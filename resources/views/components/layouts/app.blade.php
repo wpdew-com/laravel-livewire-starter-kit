@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 @livewireStyles
 <x-layouts.app.sidebar>
     <flux:main>

@@ -56,7 +56,12 @@
             </x-slot>
         </x-table>
 
-        {{ $pages->links() }}
+
+
+
+
+
+
 
         <div x-data="{ open: @entangle('showForm') }">
             <div x-show="open" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-[100]"
@@ -85,24 +90,60 @@
                         </div>
 
                         <!-- Description -->
-                        <div class="mb-5">
+                        <div class="mb-5" wire:ignore>
                             <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
                                 {{ __('pages.Description') }}
                             </label>
-                            <textarea wire:model="description"
+                            <textarea id="descriptionEditor2" wire:model="description"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="{{ __('pages.Description') }}"></textarea>
                         </div>
 
                         <!-- Content -->
-                        <div class="mb-5">
-                            <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                {{ __('pages.Content') }}
-                            </label>
-                            <textarea wire:model="content"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="{{ __('pages.Content') }}" required></textarea>
-                        </div>
+<div class="mb-5" wire:ignore>
+    <label for="contentEditor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+        {{ __('pages.Content') }}
+    </label>
+    <textarea id="contentEditor"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="{{ __('pages.Content') }}" required>{!! $content !!}</textarea>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        function initEditor() {
+            if (CKEDITOR.instances.contentEditor) {
+                CKEDITOR.instances.contentEditor.destroy(); // Удаляем старый экземпляр
+            }
+
+            let editor = CKEDITOR.replace('contentEditor');
+            editor.setData(@this.get('content')); // Загружаем контент в редактор
+
+            editor.on('change', function () {
+                @this.set('content', editor.getData());
+            });
+        }
+
+        document.addEventListener("livewire:load", initEditor);
+
+        Livewire.on('openEditor', () => {
+            setTimeout(() => {
+                initEditor();
+            }, 300); // Даем время Livewire отрендерить контент
+        });
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        Livewire.on('clearEditor', () => {
+            if (CKEDITOR.instances['contentEditor']) {
+                CKEDITOR.instances['contentEditor'].setData('');
+            }
+        });
+    });
+</script>
+
+
 
                         <!-- Image Upload -->
                         <div class="mb-5">
@@ -152,4 +193,5 @@
         @endif
 
     </div>
+
 </section>

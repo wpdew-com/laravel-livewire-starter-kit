@@ -80,7 +80,9 @@ class PageComponent extends Component
         $this->title = $page->title;
         $this->content = $page->content;
         $this->isEditMode = true;
+        $this->dispatch('openEditor');
         $this->showForm = true;
+
     }
 
     public function update()
@@ -115,7 +117,8 @@ class PageComponent extends Component
         $this->content = '';
         $this->pageId = null;
         $this->isEditMode = false;
-        $this->showForm = false; // Закрываем форму после добавления
+        $this->showForm = false;
+        $this->dispatch('clearEditor');
     }
 
 }
