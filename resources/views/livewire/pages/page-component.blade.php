@@ -4,16 +4,18 @@
     <div>
 
         @can('create page')
-        <bytton wire:click="$set('showForm', true)" class="bg-blue-500 text-white px-4 py-2 rounded">
+        <button wire:click="showForms" class="bg-blue-500 text-white px-4 py-2 rounded">
             {{ __('pages.Add page') }}
-        </bytton> <br> <br>
+        </button> <br> <br>
         @endcan
 
+
         @if (session()->has('message'))
-            <x-alert.info>
+            <x-alert.info id="flash-message">
                 {{ session('message') }}
             </x-alert.info>
         @endif
+        <div id="alertBox"></div>
 
 
 
@@ -31,7 +33,7 @@
                         <x-table.cell>
                             <button wire:click="edit({{ $page->id }})"
                                 class="bg-yellow-500 text-white px-2 py-1 rounded">
-                                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -41,7 +43,7 @@
                             </button>
                             <button wire:click="confirmDelete({{ $page->id }})"
                                 class="bg-red-500 text-white px-2 py-1 rounded ml-2">
-                                <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -110,6 +112,21 @@
 </div>
 
 <script>
+CKEDITOR.on('instanceReady', function (event) {
+    var editor = event.editor;
+
+    if (editor.notification) {
+        editor.notification.showNotification = function () {};
+    }
+
+    // Удаляем существующие предупреждения через 500 мс
+    setTimeout(function () {
+        document.querySelectorAll('.cke_notification_warning').forEach(function (el) {
+            el.remove();
+        });
+    }, 500);
+});
+
     document.addEventListener("DOMContentLoaded", function () {
         function initEditor() {
             if (CKEDITOR.instances.contentEditor) {
@@ -142,6 +159,23 @@
         });
     });
 </script>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        Livewire.on('flashMessage', message => {
+            let alertBox = document.getElementById("alertBox");
+            alertBox.innerHTML = `<div class="bg-green-500 text-white p-2 rounded" style="display:none;">${message}</div>`;
+            document.body.appendChild(alertBox);
+
+            setTimeout(() => {
+                alertBox.remove();
+            }, 3000);
+        });
+    });
+</script>
+
+
 
 
 

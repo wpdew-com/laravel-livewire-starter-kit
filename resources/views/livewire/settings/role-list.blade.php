@@ -34,7 +34,7 @@
                                 @can('update roles')
                                     <button wire:click="editRole({{ $role->id }})"
                                         class="bg-yellow-500 text-white px-2 py-1 rounded">
-                                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                        <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                             viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -46,7 +46,7 @@
                                 @can('delete roles')
                                     <button wire:click="confirmDelete({{ $role->id }})"
                                         class="bg-red-500 text-white px-2 py-1 rounded ml-2">
-                                        <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                        <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                             viewBox="0 0 24 24">
                                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"

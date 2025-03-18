@@ -48,6 +48,8 @@ class PageComponent extends Component
 
         session()->flash('message', $this->isEditMode ? __('pages.The page has been updated.') : __('pages.The page was created successfully.'));
 
+        $this->dispatch('flashMessage', __('pages.The page has been updated.'));
+
         $this->resetForm();
         $this->showForm = false;
 
@@ -109,6 +111,15 @@ class PageComponent extends Component
             session()->flash('message', __('pages.Page removed.'));
             $this->pageIdToDelete = null;
         }
+    }
+
+    //showForm
+    public function showForms()
+    {
+        $this->isEditMode = false;
+        $this->dispatch('clearEditor');
+        $this->showForm = true;
+        $this->dispatch('openEditor');
     }
 
     public function resetForm()
