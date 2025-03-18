@@ -33,7 +33,7 @@
                         <x-table.cell>
                             <button wire:click="edit({{ $page->id }})"
                                 class="bg-yellow-500 text-white px-2 py-1 rounded">
-                                <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                                <svg class="w-6 h-6 text-white dark:text-gray-900" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -43,7 +43,7 @@
                             </button>
                             <button wire:click="confirmDelete({{ $page->id }})"
                                 class="bg-red-500 text-white px-2 py-1 rounded ml-2">
-                                <svg class="w-6 h-6 text-white dark:text-white" aria-hidden="true"
+                                <svg class="w-6 h-6 text-white dark:text-gray-900" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                     viewBox="0 0 24 24">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -83,31 +83,31 @@
 
                         <!-- Title -->
                         <div class="mb-5">
-                            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
                                 {{ __('pages.Title') }}
                             </label>
                             <input wire:model="title" type="text"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="{{ __('pages.Title') }}" required />
                         </div>
 
                         <!-- Description -->
                         <div class="mb-5" wire:ignore>
-                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
                                 {{ __('pages.Description') }}
                             </label>
                             <textarea id="descriptionEditor2" wire:model="description"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="{{ __('pages.Description') }}"></textarea>
                         </div>
 
                         <!-- Content -->
 <div class="mb-5" wire:ignore>
-    <label for="contentEditor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+    <label for="contentEditor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
         {{ __('pages.Content') }}
     </label>
     <textarea id="contentEditor"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
         placeholder="{{ __('pages.Content') }}" required>{!! $content !!}</textarea>
 </div>
 
@@ -181,11 +181,11 @@ CKEDITOR.on('instanceReady', function (event) {
 
                         <!-- Image Upload -->
                         <div class="mb-5">
-                            <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                            <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
                                 {{ __('pages.Image') }}
                             </label>
                             <input wire:model="image" type="file"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
 
 
                         </div>

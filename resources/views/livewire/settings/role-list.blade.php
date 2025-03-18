@@ -67,18 +67,18 @@
                     class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-[100]"
                     style="z-index: 25; background-color: #00000040;">
                     <div class="bg-white p-6 rounded shadow-md w-[38rem] max-w-lg">
-                        <h2 class="text-lg font-bold mb-4">
+                        <h2 class="text-lg font-bold mb-4 text-gray-900 dark:text-gray-900">
                             {{ $roleIdToEdit ? __('users.Edit role') : __('users.Add role') }}
                         </h2>
 
                         <form wire:submit.prevent="storeRole">
                             <input type="text" wire:model="name" placeholder="{{ __('users.Name role') }}"
-                                class="border p-2 w-full rounded mb-2">
+                                class="border p-2 w-full rounded mb-2 text-gray-900 dark:text-gray-900">
 
                             <h3 class="text-sm font-bold mb-2">{{ __('users.Select permissions:') }}</h3>
                             <div class="grid grid-cols-2 gap-x-4 gap-y-2 max-h-48 overflow-y-auto h-32">
                                 @foreach ($permissions as $permission)
-                                    <label class="flex items-center space-x-2">
+                                    <label class="flex items-center space-x-2 text-gray-900 dark:text-gray-900">
                                         <input type="checkbox" wire:model="selectedPermissions"
                                             value="{{ $permission->id }}">
                                         <span>{{ $permission->name }}</span>
@@ -105,8 +105,8 @@
                 <div class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-[100] shadow-lg dark:bg-zinc-800 border border-transparent dark:border-zinc-700"
                     style="z-index: 25; background-color: #00000040;">
                     <div class="bg-white p-6 rounded shadow-lg w-full max-w-md">
-                        <h3 class="text-lg font-bold mb-2">{{ __('users.Are you sure?') }}</h3>
-                        <p class="mb-4">
+                        <h3 class="text-lg font-bold mb-2 text-gray-900 dark:text-gray-900">{{ __('users.Are you sure?') }}</h3>
+                        <p class="mb-4 text-gray-900 dark:text-gray-900">
                             {{ __('users.Deleting a role will result in the loss of all permissions associated with it. Are you sure you want to delete this role?') }}
                         </p>
                         <div class="flex space-x-2">

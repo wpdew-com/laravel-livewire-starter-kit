@@ -15,7 +15,7 @@
                     class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-[100] shadow-lg dark:bg-zinc-800 border border-transparent dark:border-zinc-700"
                     style="z-index: 25; background-color: #00000040;">
                     <div class="bg-white p-6 rounded shadow-md w-96">
-                        <h2 class="text-lg font-bold mb-4">
+                        <h2 class="text-lg font-bold mb-4 text-gray-900 dark:text-gray-900">
                             {{ $permissionId ? __('users.Edit permission') : __('users.Add permission') }}
                         </h2>
 
@@ -23,7 +23,7 @@
 
                         <form wire:submit.prevent="storePermission">
                             <input type="text" wire:model="name" placeholder="{{ __('users.Name permission') }}"
-                                class="border p-2 w-full rounded mb-2">
+                                class="border p-2 w-full rounded mb-2 text-gray-900 dark:text-gray-900">
 
                             <div class="flex justify-end mt-4">
                                 @if($permissionId)
@@ -55,7 +55,7 @@
 
             <table class="w-full border-collapse border">
                 <thead>
-                <tr class="bg-gray-100">
+                <tr class="bg-gray-100 text-gray-900 dark:text-gray-900">
                     <th class="border p-2">{{ __('users.Name permission') }}</th>
                     <th class="border p-2">{{ __('users.Actions') }}</th>
                 </tr>

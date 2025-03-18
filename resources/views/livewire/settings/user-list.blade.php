@@ -73,7 +73,7 @@ new class extends Component {
                             ✖
                         </button>
 
-                        <h2 class="text-lg font-bold mb-4 text-center">{{ __('users.create') }}</h2>
+                        <h2 class="text-lg font-bold mb-4 text-center text-gray-900 dark:text-gray-900">{{ __('users.create') }}</h2>
 
                         <form wire:submit.prevent="storeUser">
 
@@ -194,7 +194,7 @@ new class extends Component {
                         <h2 class="text-lg font-bold mb-4 text-center text-red-600">
                             {{ __('users.Are you sure?') }}
                         </h2>
-                        <p class="text-center mb-4">
+                        <p class="text-center mb-4 text-gray-900 dark:text-gray-900">
                             {{ __('users.This action cannot be undone!') }}
                         </p>
                         <div class="flex justify-center gap-4">
@@ -220,7 +220,7 @@ new class extends Component {
                             ✖
                         </button>
 
-                        <h2 class="text-lg font-bold mb-4 text-center">
+                        <h2 class="text-lg font-bold mb-4 text-center  text-gray-900 dark:text-gray-900">
                             {{ $editMode ? __('users.Edit User') : __('users.Create User') }}
                         </h2>
 
@@ -235,18 +235,18 @@ new class extends Component {
                                 <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
                             @enderror
                             <input type="text" wire:model="name" placeholder="{{ __('users.name') }}"
-                                class="border p-2 w-full rounded mb-2">
+                                class="border p-2 w-full rounded mb-2 text-gray-900 dark:text-gray-900">
 
                             @error('email')
                                 <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
                             @enderror
                             <input type="email" wire:model="email" placeholder="{{ __('users.email') }}"
-                                class="border p-2 w-full rounded mb-2">
+                                class="border p-2 w-full rounded mb-2 text-gray-900 dark:text-gray-900">
 
                             @error('locale')
                                 <div class="text-red-500 text-sm break-words mb-1">{{ $message }}</div>
                             @enderror
-                            <select wire:model="locale" class="border p-2 w-full rounded mb-2">
+                            <select wire:model="locale" class="border p-2 w-full rounded mb-2 text-gray-900 dark:text-gray-900">
                                 <option value="">{{ __('users.Select a locale') }}</option>
                                 @foreach ($locales as $locale)
                                     <option value="{{ $locale }}">{{ $locale }}</option>
@@ -259,19 +259,19 @@ new class extends Component {
                                 @enderror
                                 <input type="password" wire:model="password"
                                     placeholder="{{ __('users.New Password (optional)') }}"
-                                    class="border p-2 w-full rounded mb-2">
+                                    class="border p-2 w-full rounded mb-2 text-gray-900 dark:text-gray-900">
                             @else
                                 @error('password')
                                     <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
                                 @enderror
                                 <input type="password" wire:model="password"
-                                    placeholder="{{ __('users.Password') }}" class="border p-2 w-full rounded mb-2">
+                                    placeholder="{{ __('users.Password') }}" class="border p-2 w-full rounded mb-2 text-gray-900 dark:text-gray-900">
                             @endif
 
                             @error('role')
                                 <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
                             @enderror
-                            <select wire:model="role" class="border p-2 w-full rounded mb-2">
+                            <select wire:model="role" class="border p-2 w-full rounded mb-2 text-gray-900 dark:text-gray-900">
                                 <option value="">{{ __('users.Select a role') }}</option>
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->name }}">{{ $role->name }}</option>
