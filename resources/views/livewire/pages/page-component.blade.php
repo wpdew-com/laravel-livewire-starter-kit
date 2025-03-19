@@ -63,12 +63,10 @@
 
 
 
-
-
         <div x-data="{ open: @entangle('showForm') }">
             <div x-show="open" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex justify-center items-center z-[100]"
                 style="z-index: 25; background-color: #00000040;">
-                <div class="bg-white p-6 rounded shadow-md w-[50rem] max-w-lg">
+                <div class="bg-white p-6 rounded shadow-md w-[70rem] max-w-4xl">
                     <h2 class="text-lg font-bold mb-4">
                         {{ $pageId ? __('pages.Edit page') : __('pages.Add page') }}
                     </h2>
@@ -81,114 +79,150 @@
                             </x-alert.info>
                         @endif
 
-                        <!-- Title -->
-                        <div class="mb-5">
-                            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
-                                {{ __('pages.Title') }}
-                            </label>
-                            <input wire:model="title" type="text"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                placeholder="{{ __('pages.Title') }}" required />
-                        </div>
+                        <div class="flex flex-wrap gap-4">
 
-                        <!-- Description -->
-                        <div class="mb-5" wire:ignore>
-                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
-                                {{ __('pages.Description') }}
-                            </label>
-                            <textarea id="descriptionEditor2" wire:model="description"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                placeholder="{{ __('pages.Description') }}"></textarea>
-                        </div>
-
+                        <div class="w-3/4">
                         <!-- Content -->
-<div class="mb-5" wire:ignore>
-    <label for="contentEditor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
-        {{ __('pages.Content') }}
-    </label>
-    <textarea id="contentEditor"
-        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-        placeholder="{{ __('pages.Content') }}" required>{!! $content !!}</textarea>
-</div>
+                        <div class="mb-5" wire:ignore>
+                            <!--
+                            <label for="contentEditor" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
+                                {{ __('pages.Content') }}
+                            </label>
+                            -->
+                            <textarea id="contentEditor"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                placeholder="{{ __('pages.Content') }}" required>{!! $content !!}</textarea>
+                            @error('content')
+                                <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-<script>
-CKEDITOR.on('instanceReady', function (event) {
-    var editor = event.editor;
+                        <script>
+                        CKEDITOR.on('instanceReady', function (event) {
+                            var editor = event.editor;
 
-    if (editor.notification) {
-        editor.notification.showNotification = function () {};
-    }
+                            if (editor.notification) {
+                                editor.notification.showNotification = function () {};
+                            }
 
-    // Удаляем существующие предупреждения через 500 мс
-    setTimeout(function () {
-        document.querySelectorAll('.cke_notification_warning').forEach(function (el) {
-            el.remove();
-        });
-    }, 500);
-});
+                            // Удаляем существующие предупреждения через 500 мс
+                            setTimeout(function () {
+                                document.querySelectorAll('.cke_notification_warning').forEach(function (el) {
+                                    el.remove();
+                                });
+                            }, 500);
+                        });
 
-    document.addEventListener("DOMContentLoaded", function () {
-        function initEditor() {
-            if (CKEDITOR.instances.contentEditor) {
-                CKEDITOR.instances.contentEditor.destroy(); // Удаляем старый экземпляр
-            }
+                            document.addEventListener("DOMContentLoaded", function () {
+                                function initEditor() {
+                                    if (CKEDITOR.instances.contentEditor) {
+                                        CKEDITOR.instances.contentEditor.destroy(); // Удаляем старый экземпляр
+                                    }
 
-            let editor = CKEDITOR.replace('contentEditor');
-            editor.setData(@this.get('content')); // Загружаем контент в редактор
+                                    let editor = CKEDITOR.replace('contentEditor');
+                                    editor.setData(@this.get('content')); // Загружаем контент в редактор
 
-            editor.on('change', function () {
-                @this.set('content', editor.getData());
-            });
-        }
+                                    editor.on('change', function () {
+                                        @this.set('content', editor.getData());
+                                    });
+                                }
 
-        document.addEventListener("livewire:load", initEditor);
+                                document.addEventListener("livewire:load", initEditor);
 
-        Livewire.on('openEditor', () => {
-            setTimeout(() => {
-                initEditor();
-            }, 300); // Даем время Livewire отрендерить контент
-        });
-    });
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        Livewire.on('clearEditor', () => {
-            if (CKEDITOR.instances['contentEditor']) {
-                CKEDITOR.instances['contentEditor'].setData('');
-            }
-        });
-    });
-</script>
+                                Livewire.on('openEditor', () => {
+                                    setTimeout(() => {
+                                        initEditor();
+                                    }, 300); // Даем время Livewire отрендерить контент
+                                });
+                            });
+                        </script>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                Livewire.on('clearEditor', () => {
+                                    if (CKEDITOR.instances['contentEditor']) {
+                                        CKEDITOR.instances['contentEditor'].setData('');
+                                    }
+                                });
+                            });
+                        </script>
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        Livewire.on('flashMessage', message => {
-            let alertBox = document.getElementById("alertBox");
-            alertBox.innerHTML = `<div class="bg-green-500 text-white p-2 rounded" style="display:none;">${message}</div>`;
-            document.body.appendChild(alertBox);
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function () {
+                                Livewire.on('flashMessage', message => {
+                                    let alertBox = document.getElementById("alertBox");
+                                    alertBox.innerHTML = `<div class="bg-green-500 text-white p-2 rounded" style="display:none;">${message}</div>`;
+                                    document.body.appendChild(alertBox);
 
-            setTimeout(() => {
-                alertBox.remove();
-            }, 3000);
-        });
-    });
-</script>
+                                    setTimeout(() => {
+                                        alertBox.remove();
+                                    }, 3000);
+                                });
+                            });
+                        </script>
+                         </div>
 
+
+                        <div class="w-1/4">
+                            <!-- Title -->
+                            <div class="mb-5">
+                                <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
+                                    {{ __('pages.Title') }}
+                                </label>
+                                <input wire:model="title" type="text"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    placeholder="{{ __('pages.Title') }}" required />
+                                @error('title')
+                                    <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <div class="mb-5">
+
+                                <label for="uri" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
+                                    {{ __('pages.Uri') }}
+                                </label>
+                                <input wire:model="uri" type="text"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    placeholder="{{ __('pages.Uri') }}" required />
+                                @error('uri')
+                                    <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+
+                            <!-- Description -->
+                            <div class="mb-5" wire:ignore>
+                                <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
+                                    {{ __('pages.Description') }}
+                                </label>
+                                <textarea id="descriptionEditor2" wire:model="description"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                    placeholder="{{ __('pages.Description') }}"></textarea>
+                                @error('description')
+                                    <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <!--
+                            <div class="mb-5">
+                                <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
+                                    {{ __('pages.Image') }}
+                                </label>
+                                <input wire:model="image" type="file"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
+
+
+                            </div>
+                            -->
+                        </div>
+
+
+                        </div>
 
 
 
 
                         <!-- Image Upload -->
-                        <div class="mb-5">
-                            <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
-                                {{ __('pages.Image') }}
-                            </label>
-                            <input wire:model="image" type="file"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" />
 
-
-                        </div>
 
                         <div class="flex justify-end mt-4">
                             <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">

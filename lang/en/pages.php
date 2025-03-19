@@ -16,6 +16,8 @@ return [
     'Cancel' => 'Cancel',
     'Edit page' => 'Edit page',
     'Refresh page' => 'Refresh page',
-
+    'Uri' => 'Uri',
+    'Description' => 'Description',
+    'Image' => 'Image',
 ];
 

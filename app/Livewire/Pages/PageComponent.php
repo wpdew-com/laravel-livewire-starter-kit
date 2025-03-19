@@ -10,7 +10,7 @@ class PageComponent extends Component
 {
     use WithPagination;
 
-    public $title, $content, $pageId, $showForm = false;
+    public $title, $uri, $description, $content, $pageId, $showForm = false;
     public $isEditMode = false;
     public $pageIdToEdit = null;
     public $pageIdToDelete = null;
@@ -38,12 +38,18 @@ class PageComponent extends Component
     {
         $this->validate([
             'title' => 'required|string|max:255',
-            'content' => 'required|string'
+            //'content' => 'required|string',
+            'uri' => $this->isEditMode
+                ? 'required|string|unique:pages,uri,' . $this->pageId
+                : 'required|string|unique:pages,uri',
+            'description' => 'required|string'
         ]);
 
         $page = $this->isEditMode ? Page::findOrFail($this->pageId) : new Page();
         $page->title = $this->title;
         $page->content = $this->content;
+        $page->description = $this->description;
+        $page->uri = $this->uri;
         $page->save();
 
         session()->flash('message', $this->isEditMode ? __('pages.The page has been updated.') : __('pages.The page was created successfully.'));
@@ -80,6 +86,8 @@ class PageComponent extends Component
         $page = Page::findOrFail($id);
         $this->pageId = $page->id;
         $this->title = $page->title;
+        $this->uri = $page->uri;
+        $this->description = $page->description;
         $this->content = $page->content;
         $this->isEditMode = true;
         $this->dispatch('openEditor');

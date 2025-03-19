@@ -172,5 +172,6 @@ return [
         'available'             => 'Доступно',
         'size'                  => 'Розмір',
         'locale'                => 'Мова',
+        'uri'                   => 'URI',
     ],
 ];

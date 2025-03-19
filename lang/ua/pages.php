@@ -16,6 +16,9 @@ return [
     'Cancel' => 'Скасувати',
     'Edit page' => 'Редагувати сторінку',
     'Refresh page' => 'Оновити сторінку',
+    'Uri' => 'Uri',
+    'Description' => 'Опис',
+    'Image' => 'Зображення',
 
 ];
 

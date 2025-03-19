@@ -179,5 +179,6 @@ return [
         'available'             => 'Available',
         'size'                  => 'Size',
         'locale'                => 'Language',
+        'uri'                   => 'URI',
     ],
 ];

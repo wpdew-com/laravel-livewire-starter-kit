@@ -11,7 +11,10 @@ class PageSeeder extends Seeder
     {
         Page::create([
             'title' => 'Home Page',
-            'content' => 'Welcome to our home page'
+            'content' => 'Welcome to our home page',
+            'description' => 'Home page',
+            'uri' => 'home',
+            'foto' => ''
         ]);
     }
 }
