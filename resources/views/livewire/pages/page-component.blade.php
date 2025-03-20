@@ -179,13 +179,13 @@
 
                             <div class="mb-5">
 
-                                <label for="uri" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
+                                <label for="slug" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-900">
                                     {{ __('pages.Uri') }}
                                 </label>
-                                <input wire:model="uri" type="text"
+                                <input wire:model="slug" type="text"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                    placeholder="{{ __('pages.Uri') }}" required />
-                                @error('uri')
+                                    placeholder="{{ __('pages.slug') }}" required />
+                                @error('slug')
                                     <div class="text-red-500 text-sm mb-1">{{ $message }}</div>
                                 @enderror
                             </div>

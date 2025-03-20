@@ -13,5 +13,5 @@ class Page extends Model
 {
     use HasFactory, Notifiable, HasRoles;
 
-    protected $fillable = ['title', 'content', 'description', 'uri', 'foto'];
+    protected $fillable = ['title', 'content', 'description', 'slug', 'foto'];
 }
