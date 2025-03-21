@@ -14,7 +14,7 @@ return [
     'cancel' => 'Скасувати',
     'this_action_is_irreversible' => 'Ця дія незворотня',
     'log_out' => 'Вийти',
-    'settings' => 'Налаштування',
+    'My settings' => 'Мої налаштування',
     'go_to_frontend' => 'Перейти на сайт',
     'save' => 'Зберегти',
     'saved' => 'Збережено',

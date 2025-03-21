@@ -14,7 +14,7 @@ return [
     'cancel' => 'Отмена',
     'this_action_is_irreversible' => 'Это действие нельзя отменить',
     'log_out' => 'Выйти',
-    'settings' => 'Настройки',
+    'My settings' => 'Мои настройки',
     'go_to_frontend' => 'Перейти на сайт',
     'save' => 'Сохранить',
     'saved' => 'Сохранено',

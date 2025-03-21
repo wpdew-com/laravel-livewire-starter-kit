@@ -14,7 +14,7 @@ return [
     'cancel' => 'Cancel',
     'this_action_is_irreversible' => 'This action is irreversible',
     'log_out' => 'Log out',
-    'settings' => 'Settings',
+    'My settings' => 'My settings',
     'go_to_frontend' => 'Go to frontend',
     'save' => 'Save',
     'saved' => 'Saved',

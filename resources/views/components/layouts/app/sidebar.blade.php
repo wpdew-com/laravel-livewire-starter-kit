@@ -19,7 +19,7 @@
 
             <flux:navlist variant="outline">
                 <flux:navlist.group heading="{{__('Settings')}}" class="grid">
-                    <flux:navlist.item icon="document" :href="route('dashboard.pages')" :current="request()->routeIs('pages')" wire:navigate>{{ __('Pages') }}</flux:navlist.item>
+                    <flux:navlist.item icon="document" :href="route('dashboard.pages')" :current="request()->routeIs('dashboard.pages')" wire:navigate>{{ __('Pages') }}</flux:navlist.item>
 
                     <flux:navlist.item icon="document" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Posts') }}</flux:navlist.item>
 
@@ -83,7 +83,7 @@
                     <flux:menu.separator />
 
                     <flux:menu.radio.group>
-                        <flux:menu.item href="/settings/profile" icon="cog" wire:navigate>{{ __('Settings') }}</flux:menu.item>
+                        <flux:menu.item href="/settings/profile" icon="cog" wire:navigate>{{ __('My settings') }}</flux:menu.item>
                     </flux:menu.radio.group>
 
                     <flux:menu.separator />
