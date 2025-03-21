@@ -3,6 +3,7 @@
 use App\Livewire\Settings\UserManagement;
 use App\Livewire\Settings\Permissions;
 use App\Livewire\Pages\PageComponent;
+use App\Livewire\FrontPageComponent;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use Livewire\Livewire;
@@ -10,9 +11,14 @@ use App\Http\Livewire\Settings\UserList;
 use App\Livewire\Settings\RoleList;
 
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+//Route::get('/', function () {
+//    return view('welcome');
+//})->name('home');
+
+Route::get('/', FrontPageComponent::class)->name('home');
+
+// Динамические страницы по slug
+Route::get('/page/{slug}', FrontPageComponent::class)->name('page.show');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
