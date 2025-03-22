@@ -104,55 +104,61 @@
                             if (editor.notification) {
                                 editor.notification.showNotification = function () {};
                             }
-
-                            // Удаляем существующие предупреждения через 500 мс
                             setTimeout(function () {
                                 document.querySelectorAll('.cke_notification_warning').forEach(function (el) {
                                     el.remove();
                                 });
-                            }, 500);
+                            }, 10);
                         });
 
 
 
                         document.addEventListener("DOMContentLoaded", function () {
                             function initEditor() {
+                                if (typeof Livewire === 'undefined') {
+                                    console.warn('Livewire не загружен.');
+                                    return;
+                                }
+
+                                let component = Livewire.first();
+                                if (!component) {
+                                    console.warn('Livewire компонент не найден.');
+                                    return;
+                                }
+
                                 if (CKEDITOR.instances.contentEditor) {
-                                    CKEDITOR.instances.contentEditor.destroy(); // Удаляем старый экземпляр
+                                    CKEDITOR.instances.contentEditor.destroy();
                                 }
 
                                 let editor = CKEDITOR.replace('contentEditor');
-                                editor.setData(@this.get('content')); // Загружаем контент в редактор
+
+                                editor.on('instanceReady', function () {
+                                    setTimeout(() => {
+                                        editor.setData(component.get('content') || '');
+                                    }, 10);
+                                });
 
                                 editor.on('change', function () {
-                                    @this.set('content', editor.getData());
+                                    component.set('content', editor.getData());
                                 });
                             }
 
                             document.addEventListener("livewire:load", initEditor);
 
                             Livewire.on('openEditor', () => {
-                                setTimeout(() => {
-                                    initEditor();
-                                }, 500); // Даем время Livewire обновить DOM
+                                setTimeout(initEditor, 10);
                             });
 
-                            // Новое событие для обновления редактора после загрузки контента
                             Livewire.on('editorUpdated', () => {
-                                setTimeout(() => {
-                                    initEditor();
-                                }, 500);
+                                setTimeout(initEditor, 10);
                             });
                         });
-
-
-
 
                         </script>
 
 
 
-
+<!--
                         <script>
                             document.addEventListener("DOMContentLoaded", function () {
                                 Livewire.on('clearEditor', () => {
@@ -162,6 +168,7 @@
                                 });
                             });
                         </script>
+                        -->
 
 
                         <script>

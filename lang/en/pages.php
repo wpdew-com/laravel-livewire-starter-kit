@@ -19,5 +19,6 @@ return [
     'Uri' => 'Uri',
     'Description' => 'Description',
     'Image' => 'Image',
+    'slug' => 'URL',
 ];
 

@@ -19,6 +19,7 @@ return [
     'Uri' => 'Uri',
     'Description' => 'Опис',
     'Image' => 'Зображення',
+    'slug' => 'URL',
 
 ];
 
