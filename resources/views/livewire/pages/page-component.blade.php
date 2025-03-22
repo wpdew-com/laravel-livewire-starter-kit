@@ -157,20 +157,6 @@
                         </script>
 
 
-
-<!--
-                        <script>
-                            document.addEventListener("DOMContentLoaded", function () {
-                                Livewire.on('clearEditor', () => {
-                                    if (CKEDITOR.instances['contentEditor']) {
-                                        CKEDITOR.instances['contentEditor'].setData('');
-                                    }
-                                });
-                            });
-                        </script>
-                        -->
-
-
                         <script>
                             document.addEventListener("DOMContentLoaded", function () {
                                 Livewire.on('flashMessage', message => {
