@@ -20,6 +20,6 @@ class FrontPageComponent extends Component
     {
         return view('livewire.front-page-component', [
             'page' => $this->page,
-        ])->layout('layouts.app'); // Можно заменить на твой основной шаблон
+        ])->layout('layouts.app');
     }
 }

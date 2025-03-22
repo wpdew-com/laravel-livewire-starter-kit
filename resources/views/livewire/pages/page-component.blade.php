@@ -113,29 +113,46 @@
                             }, 500);
                         });
 
-                            document.addEventListener("DOMContentLoaded", function () {
-                                function initEditor() {
-                                    if (CKEDITOR.instances.contentEditor) {
-                                        CKEDITOR.instances.contentEditor.destroy(); // Удаляем старый экземпляр
-                                    }
 
-                                    let editor = CKEDITOR.replace('contentEditor');
-                                    editor.setData(@this.get('content')); // Загружаем контент в редактор
 
-                                    editor.on('change', function () {
-                                        @this.set('content', editor.getData());
-                                    });
+                        document.addEventListener("DOMContentLoaded", function () {
+                            function initEditor() {
+                                if (CKEDITOR.instances.contentEditor) {
+                                    CKEDITOR.instances.contentEditor.destroy(); // Удаляем старый экземпляр
                                 }
 
-                                document.addEventListener("livewire:load", initEditor);
+                                let editor = CKEDITOR.replace('contentEditor');
+                                editor.setData(@this.get('content')); // Загружаем контент в редактор
 
-                                Livewire.on('openEditor', () => {
-                                    setTimeout(() => {
-                                        initEditor();
-                                    }, 300); // Даем время Livewire отрендерить контент
+                                editor.on('change', function () {
+                                    @this.set('content', editor.getData());
                                 });
+                            }
+
+                            document.addEventListener("livewire:load", initEditor);
+
+                            Livewire.on('openEditor', () => {
+                                setTimeout(() => {
+                                    initEditor();
+                                }, 500); // Даем время Livewire обновить DOM
                             });
+
+                            // Новое событие для обновления редактора после загрузки контента
+                            Livewire.on('editorUpdated', () => {
+                                setTimeout(() => {
+                                    initEditor();
+                                }, 500);
+                            });
+                        });
+
+
+
+
                         </script>
+
+
+
+
                         <script>
                             document.addEventListener("DOMContentLoaded", function () {
                                 Livewire.on('clearEditor', () => {
@@ -259,6 +276,7 @@
                 </div>
             </div>
         @endif
+
 
     </div>
 

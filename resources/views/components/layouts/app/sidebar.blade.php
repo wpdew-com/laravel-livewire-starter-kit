@@ -4,7 +4,7 @@
         @include('partials.head')
     </head>
     <body class="min-h-screen bg-white dark:bg-zinc-800">
-        <flux:sidebar sticky stashable class="border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900" style="z-index: 1;">
+        <flux:sidebar sticky stashable class="border-r border-zinc-200 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900" style="z-index: 10;">
             <flux:sidebar.toggle class="lg:hidden" icon="x-mark" />
 
             <a href="{{ route('dashboard') }}" class="mr-5 flex items-center space-x-2" wire:navigate>
@@ -21,11 +21,11 @@
                 <flux:navlist.group heading="{{__('Settings')}}" class="grid">
                     <flux:navlist.item icon="document" :href="route('dashboard.pages')" :current="request()->routeIs('dashboard.pages')" wire:navigate>{{ __('Pages') }}</flux:navlist.item>
 
-                    <flux:navlist.item icon="document" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Posts') }}</flux:navlist.item>
+                    <flux:navlist.item icon="document" :href="route('dashboard')" :current="request()->routeIs('dashboard.posts')" wire:navigate>{{ __('Posts') }}</flux:navlist.item>
 
-                    <flux:navlist.item icon="list-bullet" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Categories') }}</flux:navlist.item>
+                    <flux:navlist.item icon="list-bullet" :href="route('dashboard')" :current="request()->routeIs('dashboard.categories')" wire:navigate>{{ __('Categories') }}</flux:navlist.item>
 
-                    <flux:navlist.item icon="tag" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Tags') }}</flux:navlist.item>
+                    <flux:navlist.item icon="tag" :href="route('dashboard')" :current="request()->routeIs('dashboard.tags')" wire:navigate>{{ __('Tags') }}</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 

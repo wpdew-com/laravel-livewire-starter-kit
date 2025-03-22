@@ -81,8 +81,11 @@ class PageComponent extends Component
         $this->resetForm();
     }
 
+
     public function edit($id)
     {
+
+
         $page = Page::findOrFail($id);
         $this->pageId = $page->id;
         $this->title = $page->title;
@@ -90,8 +93,9 @@ class PageComponent extends Component
         $this->description = $page->description;
         $this->content = $page->content;
         $this->isEditMode = true;
-        $this->dispatch('openEditor');
         $this->showForm = true;
+        $this->dispatch('editorUpdated', $this->content);
+
 
     }
 
@@ -126,8 +130,8 @@ class PageComponent extends Component
     {
         $this->isEditMode = false;
         $this->dispatch('clearEditor');
-        $this->showForm = true;
         $this->dispatch('openEditor');
+        $this->showForm = true;
     }
 
     public function resetForm()
