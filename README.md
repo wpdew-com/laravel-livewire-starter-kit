@@ -60,7 +60,7 @@ php artisan db:seed --class=PageSeeder
 php artisan app:create-super-admin
 ```
 
-or yse admin 
+or use admin 
 ```bash
 admin@admin.com
 adminadmin
