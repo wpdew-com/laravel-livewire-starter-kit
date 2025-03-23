@@ -60,6 +60,12 @@ php artisan db:seed --class=PageSeeder
 php artisan app:create-super-admin
 ```
 
+or yse admin 
+```bash
+admin@admin.com
+adminadmin
+```
+
 ## 3. Set default timezone if different from UTC
 
 ```php
