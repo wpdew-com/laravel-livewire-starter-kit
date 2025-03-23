@@ -63,7 +63,7 @@ php artisan app:create-super-admin
 or use admin 
 ```bash
 admin@admin.com
-adminadmin
+admin
 ```
 
 ## 3. Set default timezone if different from UTC

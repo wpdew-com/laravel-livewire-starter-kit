@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Password::defaults(function () {
-            return Password::min(6);
+            return Password::min(5);
         });
         Blade::component('components.button.primary', 'button.primary');
         View::share('pages', Page::all());
