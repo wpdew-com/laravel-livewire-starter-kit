@@ -13,7 +13,7 @@ class PageSeeder extends Seeder
             'title' => 'Home Page',
             'content' => 'Welcome to our home page',
             'description' => 'Home page',
-            'uri' => 'home',
+            'slug' => 'home',
             'foto' => ''
         ]);
     }
