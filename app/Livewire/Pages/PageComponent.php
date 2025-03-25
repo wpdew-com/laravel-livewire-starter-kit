@@ -49,6 +49,7 @@ class PageComponent extends Component
         $page->title = $this->title;
         $page->content = $this->content;
         $page->description = $this->description;
+        $page->foto = '';
         $page->slug = $this->slug;
         $page->save();
 

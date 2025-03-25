@@ -81,7 +81,7 @@
 
                         <div class="flex flex-wrap gap-4">
 
-                        <div class="w-3/4">
+                        <div class="w-2/4">
                         <!-- Content -->
                         <div class="mb-5" wire:ignore>
                             <!--
